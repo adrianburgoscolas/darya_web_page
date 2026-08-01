@@ -1,0 +1,75 @@
+---
+import { WashingMachine, LampCeiling, Hammer } from "@lucide/astro";
+---
+<section id="catalogo" class="relative bg-surface py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-gold font-semibold text-sm uppercase tracking-widest">Nuestras Categorías</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
+        Todo lo que necesitas para tu hogar
+      </h2>
+      <p class="mt-4 text-slate-600 text-lg">
+        Explora nuestras líneas de productos. Electrodomésticos, accesorios y materiales de construcción de calidad.
+      </p>
+    </div>
+
+    <!-- Category cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {[
+        {
+          cat: "Electrodomésticos",
+          desc: "Equipa tu hogar con lavadoras, neveras, cocinas, microondas, aires acondicionados y más.",
+          Icon: WashingMachine,
+          highlight: true,
+          subitems: ["Lavadoras y secadoras", "Neveras y congeladores", "Cocinas y hornos", "Microondas", "Aires acondicionados"],
+        },
+        {
+          cat: "Accesorios del Hogar",
+          desc: "Iluminación, decoración, menaje de cocina, muebles auxiliares y todo para embellecer tu espacio.",
+          Icon: LampCeiling,
+          highlight: false,
+          subitems: ["Lámparas e iluminación LED", "Menaje y utensilios de cocina", "Decoración y textiles", "Muebles auxiliares", "Organizadores y almacenaje"],
+        },
+        {
+          cat: "Materiales de Construcción",
+          desc: "Herramientas eléctricas, ferretería, pinturas, acabados y todo lo necesario para construir y renovar.",
+          Icon: Hammer,
+          highlight: false,
+          subitems: ["Herramientas eléctricas y manuales", "Ferretería y tornillería", "Pinturas y recubrimientos", "Pisos y revestimientos", "Plomería y electricidad"],
+        },
+      ].map((category) => (
+        <div class={`group relative rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${category.highlight ? 'bg-navy text-white border-navy' : 'bg-white border-slate-100'}`}>
+          <div class="p-6 sm:p-8">
+            <div class={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-5 ${category.highlight ? 'bg-gold/20 text-gold-light' : 'bg-gold/10 text-gold'}`}>
+              <category.Icon class="size-8" />
+            </div>
+            <h3 class={`text-xl font-bold mb-3 ${category.highlight ? 'text-white' : 'text-navy'}`}>
+              {category.cat}
+            </h3>
+            <p class={`text-sm leading-relaxed mb-6 ${category.highlight ? 'text-slate-300' : 'text-slate-600'}`}>
+              {category.desc}
+            </p>
+            <ul class="space-y-2">
+              {category.subitems.map((item) => (
+                <li class={`flex items-center gap-2 text-sm ${category.highlight ? 'text-slate-400' : 'text-slate-500'}`}>
+                  <span class={`w-1.5 h-1.5 rounded-full shrink-0 ${category.highlight ? 'bg-gold-light' : 'bg-gold'}`}></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class={`px-6 sm:px-8 py-4 border-t ${category.highlight ? 'border-white/10' : 'border-slate-100'}`}>
+            <a
+              href="/contacto"
+              class={`inline-flex items-center gap-2 text-sm font-semibold transition-colors ${category.highlight ? 'text-gold-light hover:text-white' : 'text-gold hover:text-navy'}`}
+            >
+              Solicitar información
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+

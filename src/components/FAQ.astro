@@ -1,0 +1,89 @@
+---
+import { ChevronDown } from "@lucide/astro";
+---
+<section class="relative bg-surface py-20 lg:py-28">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-gold font-semibold text-sm uppercase tracking-widest">FAQ</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
+        Preguntas Frecuentes
+      </h2>
+      <p class="mt-4 text-slate-600 text-lg">
+        Resolvemos tus dudas para que compres con tranquilidad.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      {[
+        {
+          q: "¿Qué tipo de productos ofrecen?",
+          a: "Nos especializamos en tres categorías principales: electrodomésticos (lavadoras, neveras, cocinas, aires acondicionados, etc.), accesorios del hogar (iluminación, decoración, menaje, muebles) y materiales de construcción (herramientas, ferretería, pinturas, acabados). Si tienes un producto específico en mente, contáctanos y te ayudaremos a conseguirlo.",
+        },
+        {
+          q: "¿Cuánto tarda en llegar mi pedido?",
+          a: "El tiempo de entrega varía según tu ubicación y el tipo de producto. Generalmente, los envíos nacionales tardan de 3 a 7 días hábiles, y los pedidos especiales pueden tomar de 10 a 20 días hábiles. Todos los envíos incluyen rastreo en tiempo real para que sepas dónde está tu pedido en todo momento.",
+        },
+        {
+          q: "¿Cómo funciona la garantía y devoluciones?",
+          a: "Todos nuestros productos cuentan con garantía oficial del fabricante. Tienes hasta 30 días para reportar cualquier inconveniente. Nuestro equipo de soporte te guiará durante todo el proceso para que sea rápido y sin complicaciones. Tu satisfacción está garantizada.",
+        },
+        {
+          q: "¿Cómo puedo solicitar información sobre un producto?",
+          a: "Puedes contactarnos a través de nuestro formulario de contacto en la página, por WhatsApp o por teléfono. Nuestro equipo de asesoría te atenderá personalmente para darte todos los detalles sobre disponibilidad, especificaciones y condiciones.",
+        },
+        {
+          q: "¿Realizan envíos a todo Latinoamérica?",
+          a: "Sí, realizamos envíos a más de 15 países de Latinoamérica. Contamos con alianzas logísticas que nos permiten garantizar entregas seguras y puntuales en toda la región. Contáctanos para confirmar cobertura en tu ciudad.",
+        },
+        {
+          q: "¿Cómo puedo estar seguro de que mi compra es segura?",
+          a: "Trabajamos únicamente con proveedores verificados y utilizamos sistemas de pago con encriptación SSL. Nuestro proceso es completamente transparente: recibirás confirmación de tu pedido, seguimiento en tiempo real y soporte continuo hasta que recibas tu producto.",
+        },
+      ].map((item, index) => (
+        <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+          <button
+            type="button"
+            class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left"
+            data-index={index}
+          >
+            <span class="font-semibold text-navy pr-4">{item.q}</span>
+            <span class="faq-icon shrink-0 text-slate-400 transition-transform duration-300">
+              <ChevronDown class="size-5" />
+            </span>
+          </button>
+          <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6">
+            <p class="text-slate-600 leading-relaxed text-sm">{item.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const answer = toggle.nextElementSibling as HTMLElement;
+      const icon = toggle.querySelector('.faq-icon') as HTMLElement;
+
+      document.querySelectorAll('.faq-answer').forEach(a => {
+        if (a !== answer) {
+          (a as HTMLElement).classList.add('hidden');
+        }
+      });
+      document.querySelectorAll('.faq-icon').forEach(i => {
+        if (i !== icon) {
+          i.style.transform = 'rotate(0deg)';
+        }
+      });
+
+      answer.classList.toggle('hidden');
+      if (answer.classList.contains('hidden')) {
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>
+

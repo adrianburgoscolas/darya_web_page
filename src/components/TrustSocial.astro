@@ -1,0 +1,212 @@
+---
+import { Lock, Shield, BadgeCheck, Headset, Package, Star, ChevronLeft, ChevronRight } from "@lucide/astro";
+
+const testimonials = [
+  {
+    name: "María García",
+    location: "México",
+    text: "Compré todos los electrodomésticos para mi casa nueva con Darya. La calidad de los productos es excelente y el proceso fue completamente transparente. Me dieron total confianza desde el primer contacto.",
+    rating: 5,
+  },
+  {
+    name: "Carlos Rodríguez",
+    location: "Colombia",
+    text: "Lo que más valoro es la seriedad de la empresa. Me mantuvieron informado en cada etapa del proceso y los productos llegaron en perfecto estado. Sin duda volveré a comprar.",
+    rating: 5,
+  },
+  {
+    name: "Ana Silva",
+    location: "Brasil",
+    text: "Renové completamente mi cocina con Darya. La asesoría fue espectacular, me ayudaron a elegir los mejores productos según mi presupuesto. Las facilidades de pago hicieron todo más accesible.",
+    rating: 5,
+  },
+  {
+    name: "Pedro Martínez",
+    location: "Argentina",
+    text: "Compré materiales de construcción para remodelar mi casa. La calidad es superior a lo que encuentras localmente y a mejor precio. Empresa seria y comprometida con sus clientes.",
+    rating: 5,
+  },
+  {
+    name: "Laura Fernández",
+    location: "Chile",
+    text: "Excelente experiencia comprando accesorios para el hogar. La atención por WhatsApp fue rapidísima y resolvieron todas mis dudas. Los productos llegaron antes de lo esperado.",
+    rating: 5,
+  },
+  {
+    name: "Diego López",
+    location: "Perú",
+    text: "Ya he hecho tres compras con Darya y siempre cumplen. La seguridad que transmiten es lo que más me gusta. Sabes que tu dinero está bien invertido y que recibirás exactamente lo que pediste.",
+    rating: 5,
+  },
+  {
+    name: "Sofía Ramírez",
+    location: "Ecuador",
+    text: "Amplié mi hogar con una nevera y una lavadora nuevas. Las condiciones de pago se adaptaron perfectamente a mis posibilidades. Recomiendo Darya a todos mis amigos y familiares.",
+    rating: 5,
+  },
+  {
+    name: "Ricardo Torres",
+    location: "Guatemala",
+    text: "La puntualidad en la entrega y la calidad de los productos me sorprendieron gratamente. Es difícil encontrar empresas tan profesionales y confiables. Darya superó mis expectativas.",
+    rating: 4,
+  },
+];
+---
+
+<section id="opiniones" class="relative bg-navy py-20 lg:py-28 overflow-hidden">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Metrics counter -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-20">
+      {[
+        { value: "+50,000", label: "Clientes satisfechos" },
+        { value: "99.8%", label: "Entregas a tiempo" },
+        { value: "+15", label: "Países en LATAM" },
+        { value: "24/7", label: "Soporte disponible" },
+      ].map((stat) => (
+        <div class="text-center p-6 rounded-2xl bg-navy-light/50 border border-white/5">
+          <div class="text-3xl sm:text-4xl font-black text-gold-light mb-2">{stat.value}</div>
+          <div class="text-sm text-slate-400">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Testimonials Carousel -->
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-gold-light font-semibold text-sm uppercase tracking-widest">Testimonios</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Lo que dicen nuestros clientes
+      </h2>
+      <p class="mt-4 text-slate-400 text-lg">
+        Historias reales de personas que confiaron en nosotros para equipar su hogar.
+      </p>
+    </div>
+
+    <!-- Carousel -->
+    <div id="testimonial-carousel" class="relative max-w-3xl mx-auto">
+      <!-- Slides container -->
+      <div id="carousel-track" class="overflow-hidden" data-total={testimonials.length}>
+        <div id="carousel-slides" class="flex transition-transform duration-500 ease-in-out">
+          {testimonials.map((t) => (
+            <div class="w-full shrink-0 px-2">
+              <div class="bg-navy-light/60 backdrop-blur rounded-2xl p-6 sm:p-8 border border-white/10 mx-auto max-w-lg">
+                <div class="flex gap-1 mb-4">
+                  {Array.from({ length: t.rating }).map(() => (
+                    <Star class="size-5 text-gold-light fill-gold-light" />
+                  ))}
+                </div>
+                <p class="text-slate-300 leading-relaxed mb-6">"{t.text}"</p>
+                <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                  <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold-light font-bold text-sm">
+                    {t.name.split(' ').map((n: string) => n[0]).join('')}
+                  </div>
+                  <div>
+                    <div class="font-semibold text-white text-sm">{t.name}</div>
+                    <div class="text-xs text-slate-400">{t.location}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Navigation arrows -->
+      <button id="carousel-prev" class="absolute top-1/2 -left-4 sm:-left-6 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-navy-light/80 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-gold transition-all border border-white/10 shadow-lg" aria-label="Anterior">
+        <ChevronLeft class="size-5 sm:size-6" />
+      </button>
+      <button id="carousel-next" class="absolute top-1/2 -right-4 sm:-right-6 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-navy-light/80 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-gold transition-all border border-white/10 shadow-lg" aria-label="Siguiente">
+        <ChevronRight class="size-5 sm:size-6" />
+      </button>
+
+      <!-- Dots -->
+      <div id="carousel-dots" class="flex justify-center gap-2 mt-8">
+        {testimonials.map((_, i) => (
+          <button
+            type="button"
+            data-index={i}
+            class={`carousel-dot w-2.5 h-2.5 rounded-full transition-all ${i === 0 ? 'bg-gold-light w-8' : 'bg-slate-600 hover:bg-slate-400'}`}
+            aria-label={`Ir a testimonio ${i + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Security badges -->
+    <div id="garantia" class="mt-24 pt-16 border-t border-white/10">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          Compra con total confianza
+        </h2>
+        <p class="mt-4 text-slate-400">
+          Tu seguridad es nuestra prioridad. Utilizamos los más altos estándares de protección.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-8 items-center">
+        {[
+          { label: "SSL Encriptado", Icon: Lock },
+          { label: "Pago Seguro", Icon: Shield },
+          { label: "Garantía Extendida", Icon: BadgeCheck },
+          { label: "Soporte 24/7", Icon: Headset },
+          { label: "Envío Asegurado", Icon: Package },
+        ].map((badge) => (
+          <div class="flex flex-col items-center gap-2 text-center p-4">
+            <badge.Icon class="size-8 text-gold-light" />
+            <span class="text-sm font-medium text-slate-300">{badge.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const slides = document.getElementById('carousel-slides') as HTMLElement;
+  const dots = document.querySelectorAll('.carousel-dot');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  let currentIndex = 0;
+  const totalSlides = parseInt(track?.getAttribute('data-total') || '1');
+
+  function goToSlide(index: number) {
+    currentIndex = (index + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, i) => {
+      if (i === currentIndex) {
+        dot.className = 'carousel-dot w-2.5 h-2.5 rounded-full transition-all bg-gold-light w-8';
+      } else {
+        dot.className = 'carousel-dot w-2.5 h-2.5 rounded-full transition-all bg-slate-600 hover:bg-slate-400';
+      }
+    });
+  }
+
+  prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+  nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = parseInt(dot.getAttribute('data-index') || '0');
+      goToSlide(index);
+    });
+  });
+
+  // Auto-advance every 5 seconds
+  setInterval(() => goToSlide(currentIndex + 1), 5000);
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const track = document.getElementById('carousel-track');
+  track?.addEventListener('touchstart', (e) => { touchStartX = (e as TouchEvent).changedTouches[0].screenX; });
+  track?.addEventListener('touchend', (e) => {
+    touchEndX = (e as TouchEvent).changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) goToSlide(currentIndex + 1);
+    if (touchEndX - touchStartX > 50) goToSlide(currentIndex - 1);
+  });
+</script>
+

@@ -1,0 +1,55 @@
+---
+import { Search, MessageSquareText, Truck } from "@lucide/astro";
+---
+<section id="como-funciona" class="relative bg-white py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-gold font-semibold text-sm uppercase tracking-widest">¿Cómo Funciona?</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
+        Así de simple es comprar con Darya
+      </h2>
+      <p class="mt-4 text-slate-600 text-lg">
+        Tres pasos sencillos para equipar tu hogar con productos de calidad.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-gold/20 via-gold to-gold/20 -translate-y-1/2"></div>
+
+      <div class="grid lg:grid-cols-3 gap-10 lg:gap-16">
+        {[
+          {
+            step: "01",
+            title: "Explora nuestras categorías",
+            desc: "Descubre nuestra selección de electrodomésticos, accesorios y materiales de construcción. Elige lo que necesitas para tu hogar.",
+            Icon: Search,
+          },
+          {
+            step: "02",
+            title: "Solicita información",
+            desc: "Contáctanos para conocer condiciones, disponibilidad y acordar los términos que mejor se adapten a tus necesidades.",
+            Icon: MessageSquareText,
+          },
+          {
+            step: "03",
+            title: "Recibe en la puerta de tu casa",
+            desc: "Envío garantizado con rastreo en tiempo real y soporte posventa continuo. Tu satisfacción es nuestra prioridad.",
+            Icon: Truck,
+          },
+        ].map((item) => (
+          <div class="relative flex flex-col items-center text-center group">
+            <div class="relative z-10 flex items-center justify-center w-20 h-20 rounded-full bg-navy text-white font-black text-xl mb-6 shadow-xl shadow-navy/20 group-hover:scale-110 transition-transform duration-300">
+              {item.step}
+            </div>
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gold/10 text-gold mb-4">
+              <item.Icon class="size-8" />
+            </div>
+            <h3 class="text-xl font-bold text-navy mb-3">{item.title}</h3>
+            <p class="text-slate-600 leading-relaxed max-w-xs">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
