@@ -1,0 +1,54 @@
+---
+import { CircleDollarSign, ShieldCheck, Zap, Headset } from "@lucide/astro";
+---
+<section class="relative bg-surface py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-gold font-semibold text-sm uppercase tracking-widest">¿Por qué Darya?</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
+        La forma inteligente de equipar tu hogar
+      </h2>
+      <p class="mt-4 text-slate-600 text-lg">
+        Eliminamos las barreras para que accedas a productos de calidad con condiciones que se adaptan a ti.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {[
+        {
+          Icon: CircleDollarSign,
+          title: "Precios Competitivos",
+          desc: "Conectamos directamente con proveedores para ofrecerte los mejores precios del mercado, sin intermediarios innecesarios.",
+          color: "bg-amber-50 text-gold",
+        },
+        {
+          Icon: ShieldCheck,
+          title: "Compra Garantizada",
+          desc: "Tu inversión está protegida. Trabajamos con proveedores verificados y ofrecemos garantía en todos nuestros productos.",
+          color: "bg-emerald-50 text-emerald",
+        },
+        {
+          Icon: Zap,
+          title: "Logística Segura y Rápida",
+          desc: "Cobertura regional garantizada con rastreo en tiempo real. Tu pedido llega seguro y a tiempo a cualquier país de Latinoamérica.",
+          color: "bg-blue-50 text-blue-600",
+        },
+        {
+          Icon: Headset,
+          title: "Asesoría Personalizada",
+          desc: "Te acompañamos en cada paso. Atención dedicada vía WhatsApp y soporte multicanal para resolver todas tus dudas.",
+          color: "bg-purple-50 text-purple-600",
+        },
+      ].map((item) => (
+        <div class="group relative bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${item.color} mb-5`}>
+            <item.Icon class="size-7" />
+          </div>
+          <h3 class="text-lg font-bold text-navy mb-3">{item.title}</h3>
+          <p class="text-slate-600 leading-relaxed text-sm">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+

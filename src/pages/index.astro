@@ -1,17 +1,25 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import ValueProps from "../components/ValueProps.astro";
+import ProductShowcase from "../components/ProductShowcase.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import TrustSocial from "../components/TrustSocial.astro";
+import FAQ from "../components/FAQ.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Darya Integral Trade SL — Todo para tu hogar, al alcance de tu mano."
+  description="Darya Integral Trade SL - Todo para tu hogar. Electrodomésticos, accesorios y materiales de construcción con envíos a toda Latinoamérica."
+  ogTitle="Darya Integral Trade SL — Todo para tu hogar"
+  ogDescription="Electrodomésticos, accesorios y materiales de construcción con envíos a toda Latinoamérica."
+>
+  <main>
+    <Hero />
+    <ValueProps />
+    <ProductShowcase />
+    <HowItWorks />
+    <TrustSocial />
+    <FAQ />
+  </main>
+</Layout>

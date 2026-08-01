@@ -1,0 +1,133 @@
+<section id="calculadora" class="relative bg-navy py-20 lg:py-28">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-gold-light font-semibold text-sm uppercase tracking-widest">Calculadora de Cuotas</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Simula tu plan de pago
+      </h2>
+      <p class="mt-4 text-slate-400 text-lg">
+        Ajusta el monto y el plazo para ver cuánto pagarías por mes. Sin letra chica.
+      </p>
+    </div>
+
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-navy-light/80 backdrop-blur rounded-3xl p-8 sm:p-10 border border-white/10 shadow-2xl">
+        <!-- Amount slider -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-3">
+            <label class="text-sm font-medium text-slate-300">Monto de compra</label>
+            <span id="amount-display" class="text-2xl font-bold text-white">$500.00</span>
+          </div>
+          <input
+            type="range"
+            id="amount-slider"
+            min="100"
+            max="5000"
+            step="50"
+            value="500"
+            class="w-full h-2 bg-slate-700 rounded-full appearance-none cursor-pointer accent-gold
+              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gold [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white"
+          />
+          <div class="flex justify-between mt-2 text-xs text-slate-500">
+            <span>$100</span>
+            <span>$5,000</span>
+          </div>
+        </div>
+
+        <!-- Installments selector -->
+        <div class="mb-8">
+          <label class="text-sm font-medium text-slate-300 block mb-3">Plazo en cuotas</label>
+          <div class="grid grid-cols-4 gap-3" id="cuotas-group">
+            {[3, 6, 12, 24].map((n) => (
+              <button
+                type="button"
+                data-cuotas={n}
+                class={`cuota-btn py-3 px-2 rounded-xl text-sm font-semibold border transition-all duration-200 ${
+                  n === 12
+                    ? "bg-gold text-white border-gold shadow-lg shadow-gold/30"
+                    : "bg-transparent text-slate-300 border-slate-600 hover:border-slate-400"
+                }`}
+              >
+                {n} cuotas
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="bg-navy rounded-2xl p-6 border border-white/5">
+          <div class="text-center">
+            <div class="text-sm text-slate-400 mb-1">Pagarías aproximadamente</div>
+            <div id="monthly-payment" class="text-4xl sm:text-5xl font-black text-gold-light">$41.67</div>
+            <div class="text-sm text-slate-400 mt-1">por mes durante <span id="months-display">12</span> meses</div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div class="text-xs text-slate-500 mb-1">Total a pagar</div>
+              <div id="total-price" class="text-lg font-bold text-white">$500.00</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 mb-1">Interés</div>
+              <div class="text-lg font-bold text-emerald">0%</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 mb-1">Ahorro vs retail</div>
+              <div id="savings" class="text-lg font-bold text-gold-light">$150.00</div>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="#catalogo"
+          class="mt-6 inline-flex w-full justify-center items-center px-8 py-4 bg-gold text-white font-bold text-base rounded-full hover:bg-gold-light transition-all duration-200 shadow-xl shadow-gold/30"
+        >
+          Quiero empezar a comprar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const amountSlider = document.getElementById('amount-slider') as HTMLInputElement;
+  const amountDisplay = document.getElementById('amount-display');
+  const monthlyPayment = document.getElementById('monthly-payment');
+  const monthsDisplay = document.getElementById('months-display');
+  const totalPrice = document.getElementById('total-price');
+  const savings = document.getElementById('savings');
+  const cuotaBtns = document.querySelectorAll('.cuota-btn');
+
+  let selectedCuotas = 12;
+
+  function updateDisplay() {
+    const amount = parseFloat(amountSlider.value);
+    const monthly = amount / selectedCuotas;
+    const savedAmount = amount * 0.3;
+
+    if (amountDisplay) amountDisplay.textContent = `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if (monthlyPayment) monthlyPayment.textContent = `$${monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if (monthsDisplay) monthsDisplay.textContent = selectedCuotas.toString();
+    if (totalPrice) totalPrice.textContent = `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if (savings) savings.textContent = `$${savedAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
+
+  amountSlider?.addEventListener('input', updateDisplay);
+
+  cuotaBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedCuotas = parseInt(btn.getAttribute('data-cuotas') || '12');
+      cuotaBtns.forEach(b => {
+        b.className = b.className.replace(/bg-gold text-white border-gold shadow-lg shadow-gold\/30/, '')
+          .replace(/bg-transparent text-slate-300 border-slate-600 hover:border-slate-400/, '');
+        b.classList.add('bg-transparent', 'text-slate-300', 'border-slate-600');
+      });
+      btn.className = 'cuota-btn py-3 px-2 rounded-xl text-sm font-semibold border transition-all duration-200 bg-gold text-white border-gold shadow-lg shadow-gold/30';
+      updateDisplay();
+    });
+  });
+</script>
