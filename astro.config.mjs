@@ -2,13 +2,13 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-const BASE = process.env.BASE_PATH || '/';
-const SITE = process.env.SITE_URL || 'https://darya-integral-trade.com';
+const base = process.env.ASTRO_BASE_PATH ?? '/darya_web_page';
+const site = process.env.ASTRO_SITE ?? 'https://adrianburgoscolas.github.io';
 
 // https://astro.build/config
 export default defineConfig({
-  site: SITE,
-  base: BASE,
+  site,
+  base,
   vite: {
     plugins: [tailwindcss()]
   }

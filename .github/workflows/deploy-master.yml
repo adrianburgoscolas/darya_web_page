@@ -23,10 +23,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Astro site
-        run: pnpm build
-        env:
-          BASE_PATH: '/'
-          SITE_URL: 'https://darya-integral-trade.com'
+        run: pnpm build:hostinger
 
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

@@ -67,24 +67,45 @@ initForm({ formElement: '#contact-form', formId: 'xkodlzej' });
 
 ## 🚢 Despliegue
 
-El proyecto tiene dos workflows de GitHub Actions:
+### Configuración por entorno
+
+| Entorno | `ASTRO_BASE_PATH` | `ASTRO_SITE` |
+|---|---|---|
+| Local (dev) | `/` | `https://adrianburgoscolas.github.io` |
+| GitHub Pages | `/darya_web_page` | `https://adrianburgoscolas.github.io` |
+| Hostinger | `/` | `https://darya-integral-trade.com` |
+
+### Scripts de build
+
+| Comando | Uso |
+|---|---|
+| `pnpm dev` | Dev local en `/` |
+| `pnpm dev:gp` | Dev local simulando GitHub Pages |
+| `pnpm build` | Build por defecto (GitHub Pages) |
+| `pnpm build:gp` | Build explícito para GitHub Pages |
+| `pnpm build:hostinger` | Build para Hostinger (producción) |
+| `pnpm preview` | Previsualizar la build generada |
+
+### Workflows CI/CD
 
 | Rama | Destino | Workflow |
 |---|---|---|
 | `develop` | GitHub Pages | `.github/workflows/deploy-develop.yml` |
 | `master` | Hostinger (FTP) | `.github/workflows/deploy-master.yml` |
 
-### GitHub Pages (develop)
+#### GitHub Pages (develop)
 
-- Compila con `BASE_PATH='/darya_web_page/'`
-- Despliega a la rama `gh-pages` usando `peaceiris/actions-gh-pages`
+- Push a `develop` dispara el workflow
+- Usa `withastro/action@v3` + `actions/deploy-pages@v4`
+- Requiere GitHub Pages habilitado en Settings → Pages → Source: **GitHub Actions**
 - URL: `https://adrianburgoscolas.github.io/darya_web_page/`
 
-### Hostinger (master)
+#### Hostinger (master)
 
-- Compila con `BASE_PATH='/'`
-- Despliega vía FTP usando `SamKirkland/FTP-Deploy-Action`
-- Requiere los secrets `HOSTINGER_FTP_HOST`, `HOSTINGER_FTP_USER`, `HOSTINGER_FTP_PASSWORD`
+- Push a `master` dispara el workflow
+- Compila con `build:hostinger` y despliega vía FTP
+- Requiere los secrets: `HOSTINGER_FTP_HOST`, `HOSTINGER_FTP_USER`, `HOSTINGER_FTP_PASSWORD`
+- Sube el contenido de `dist/` a `public_html/`
 
 ## 📄 Páginas legales
 
@@ -96,25 +117,5 @@ El proyecto tiene dos workflows de GitHub Actions:
 
 | Variable | Default | Descripción |
 |---|---|---|
-| `BASE_PATH` | `/` | Path base para URLs (útil para GitHub Pages) |
-| `SITE_URL` | `https://darya-integral-trade.com` | URL canónica del sitio |
-
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| `ASTRO_BASE_PATH` | `/darya_web_page` | Path base para URLs |
+| `ASTRO_SITE` | `https://adrianburgoscolas.github.io` | URL canónica del sitio |
