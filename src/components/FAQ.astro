@@ -61,29 +61,25 @@ import { ChevronDown } from "@lucide/astro";
 </section>
 
 <script>
-  document.querySelectorAll('.faq-toggle').forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const answer = toggle.nextElementSibling as HTMLElement;
-      const icon = toggle.querySelector('.faq-icon') as HTMLElement;
+  function initFAQ() {
+    document.querySelectorAll('.faq-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const answer = toggle.nextElementSibling as HTMLElement;
+        const icon = toggle.querySelector('.faq-icon') as HTMLElement;
+        if (!answer || !icon) return;
 
-      document.querySelectorAll('.faq-answer').forEach(a => {
-        if (a !== answer) {
-          (a as HTMLElement).classList.add('hidden');
-        }
-      });
-      document.querySelectorAll('.faq-icon').forEach(i => {
-        if (i !== icon) {
-          i.style.transform = 'rotate(0deg)';
-        }
-      });
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          if (a !== answer) (a as HTMLElement).classList.add('hidden');
+        });
+        document.querySelectorAll('.faq-icon').forEach(i => {
+          if (i !== icon) (i as HTMLElement).style.transform = 'rotate(0deg)';
+        });
 
-      answer.classList.toggle('hidden');
-      if (answer.classList.contains('hidden')) {
-        icon.style.transform = 'rotate(0deg)';
-      } else {
-        icon.style.transform = 'rotate(180deg)';
-      }
+        answer.classList.toggle('hidden');
+        icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
     });
-  });
+  }
+  document.addEventListener('astro:page-load', initFAQ);
 </script>
 

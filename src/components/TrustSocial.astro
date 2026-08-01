@@ -166,67 +166,75 @@ const testimonials = [
 </section>
 
 <script>
-  const track = document.getElementById('carousel-track') as HTMLElement;
-  const slides = document.getElementById('carousel-slides') as HTMLElement;
-  const dots = document.querySelectorAll('.carousel-dot');
-  const prevBtn = document.getElementById('carousel-prev');
-  const nextBtn = document.getElementById('carousel-next');
-  let currentIndex = 0;
-  const totalSlides = parseInt(track?.getAttribute('data-total') || '1');
   let autoPlayInterval: ReturnType<typeof setInterval>;
+  let currentIndex = 0;
 
-  function goToSlide(index: number) {
-    currentIndex = (index + totalSlides) % totalSlides;
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    dots.forEach((dot, i) => {
-      if (i === currentIndex) {
-        dot.className = 'carousel-dot w-2.5 h-2.5 rounded-full transition-all bg-gold-light w-8';
-      } else {
-        dot.className = 'carousel-dot w-2.5 h-2.5 rounded-full transition-all bg-slate-600 hover:bg-slate-400';
-      }
+  function initCarousel() {
+    const track = document.getElementById('carousel-track');
+    const slides = document.getElementById('carousel-slides');
+    if (!track || !slides) return;
+
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const totalSlides = parseInt(track.getAttribute('data-total') || '1');
+
+    function goToSlide(index: number) {
+      currentIndex = (index + totalSlides) % totalSlides;
+      slides!.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, i) => {
+        (dot as HTMLElement).className = i === currentIndex
+          ? 'carousel-dot w-2.5 h-2.5 rounded-full transition-all bg-gold-light w-8'
+          : 'carousel-dot w-2.5 h-2.5 rounded-full transition-all bg-slate-600 hover:bg-slate-400';
+      });
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 4000);
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+
+    // Reset to first slide
+    currentIndex = 0;
+    goToSlide(0);
+    startAutoPlay();
+
+    track.addEventListener('mouseenter', stopAutoPlay);
+    track.addEventListener('mouseleave', startAutoPlay);
+
+    prevBtn?.addEventListener('click', () => { goToSlide(currentIndex - 1); startAutoPlay(); });
+    nextBtn?.addEventListener('click', () => { goToSlide(currentIndex + 1); startAutoPlay(); });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt((dot as HTMLElement).getAttribute('data-index') || '0');
+        goToSlide(index);
+        startAutoPlay();
+      });
+    });
+
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = (e as TouchEvent).changedTouches[0].screenX;
+      stopAutoPlay();
+    });
+    track.addEventListener('touchend', (e) => {
+      const touchEndX = (e as TouchEvent).changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) goToSlide(currentIndex + 1);
+      if (touchEndX - touchStartX > 50) goToSlide(currentIndex - 1);
+      startAutoPlay();
     });
   }
 
-  function startAutoPlay() {
-    stopAutoPlay();
-    autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 4000);
-  }
-
-  function stopAutoPlay() {
+  function cleanupCarousel() {
     clearInterval(autoPlayInterval);
   }
 
-  // Start auto-play
-  startAutoPlay();
-
-  // Pause on hover
-  track?.addEventListener('mouseenter', stopAutoPlay);
-  track?.addEventListener('mouseleave', startAutoPlay);
-
-  // Manual navigation
-  prevBtn?.addEventListener('click', () => { goToSlide(currentIndex - 1); startAutoPlay(); });
-  nextBtn?.addEventListener('click', () => { goToSlide(currentIndex + 1); startAutoPlay(); });
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const index = parseInt(dot.getAttribute('data-index') || '0');
-      goToSlide(index);
-      startAutoPlay();
-    });
-  });
-
-  // Touch/swipe support
-  let touchStartX = 0;
-  let touchEndX = 0;
-  track?.addEventListener('touchstart', (e) => {
-    touchStartX = (e as TouchEvent).changedTouches[0].screenX;
-    stopAutoPlay();
-  });
-  track?.addEventListener('touchend', (e) => {
-    touchEndX = (e as TouchEvent).changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 50) goToSlide(currentIndex + 1);
-    if (touchEndX - touchStartX > 50) goToSlide(currentIndex - 1);
-    startAutoPlay();
-  });
+  document.addEventListener('astro:page-load', initCarousel);
+  document.addEventListener('astro:before-swap', cleanupCarousel);
 </script>
 
