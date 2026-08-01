@@ -166,12 +166,14 @@ const testimonials = [
 </section>
 
 <script>
+  const track = document.getElementById('carousel-track') as HTMLElement;
   const slides = document.getElementById('carousel-slides') as HTMLElement;
   const dots = document.querySelectorAll('.carousel-dot');
   const prevBtn = document.getElementById('carousel-prev');
   const nextBtn = document.getElementById('carousel-next');
   let currentIndex = 0;
   const totalSlides = parseInt(track?.getAttribute('data-total') || '1');
+  let autoPlayInterval: ReturnType<typeof setInterval>;
 
   function goToSlide(index: number) {
     currentIndex = (index + totalSlides) % totalSlides;
@@ -185,28 +187,46 @@ const testimonials = [
     });
   }
 
-  prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
-  nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 4000);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+  }
+
+  // Start auto-play
+  startAutoPlay();
+
+  // Pause on hover
+  track?.addEventListener('mouseenter', stopAutoPlay);
+  track?.addEventListener('mouseleave', startAutoPlay);
+
+  // Manual navigation
+  prevBtn?.addEventListener('click', () => { goToSlide(currentIndex - 1); startAutoPlay(); });
+  nextBtn?.addEventListener('click', () => { goToSlide(currentIndex + 1); startAutoPlay(); });
 
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       const index = parseInt(dot.getAttribute('data-index') || '0');
       goToSlide(index);
+      startAutoPlay();
     });
   });
-
-  // Auto-advance every 5 seconds
-  setInterval(() => goToSlide(currentIndex + 1), 5000);
 
   // Touch/swipe support
   let touchStartX = 0;
   let touchEndX = 0;
-  const track = document.getElementById('carousel-track');
-  track?.addEventListener('touchstart', (e) => { touchStartX = (e as TouchEvent).changedTouches[0].screenX; });
+  track?.addEventListener('touchstart', (e) => {
+    touchStartX = (e as TouchEvent).changedTouches[0].screenX;
+    stopAutoPlay();
+  });
   track?.addEventListener('touchend', (e) => {
     touchEndX = (e as TouchEvent).changedTouches[0].screenX;
     if (touchStartX - touchEndX > 50) goToSlide(currentIndex + 1);
     if (touchEndX - touchStartX > 50) goToSlide(currentIndex - 1);
+    startAutoPlay();
   });
 </script>
 
