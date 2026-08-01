@@ -1,43 +1,25 @@
 ---
-import "../styles/global.css";
-import Navbar from "../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import ValueProps from "../components/ValueProps.astro";
 import ProductShowcase from "../components/ProductShowcase.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import TrustSocial from "../components/TrustSocial.astro";
 import FAQ from "../components/FAQ.astro";
-import Footer from "../components/Footer.astro";
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#0F172A" />
-    <meta name="description" content="Darya Integral Trade SL - Todo para tu hogar. Electrodomésticos, accesorios y materiales de construcción con envíos a toda Latinoamérica." />
-    <meta property="og:title" content="Darya Integral Trade SL — Todo para tu hogar" />
-    <meta property="og:description" content="Electrodomésticos, accesorios y materiales de construcción con envíos a toda Latinoamérica." />
-    <meta property="og:image" content="/og-image.png" />
-    <meta property="og:type" content="website" />
-    <title>Darya Integral Trade SL — Todo para tu hogar, al alcance de tu mano.</title>
-  </head>
-  <body class="bg-navy text-slate-600 antialiased">
-    <Navbar />
-    <main>
-      <Hero />
-      <ValueProps />
-      <ProductShowcase />
-      <HowItWorks />
-      <TrustSocial />
-      <FAQ />
-    </main>
-    <Footer />
-  </body>
-</html>
+<Layout
+  title="Darya Integral Trade SL — Todo para tu hogar, al alcance de tu mano."
+  description="Darya Integral Trade SL - Todo para tu hogar. Electrodomésticos, accesorios y materiales de construcción con envíos a toda Latinoamérica."
+  ogTitle="Darya Integral Trade SL — Todo para tu hogar"
+  ogDescription="Electrodomésticos, accesorios y materiales de construcción con envíos a toda Latinoamérica."
+>
+  <main>
+    <Hero />
+    <ValueProps />
+    <ProductShowcase />
+    <HowItWorks />
+    <TrustSocial />
+    <FAQ />
+  </main>
+</Layout>

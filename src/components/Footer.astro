@@ -22,9 +22,14 @@ import { MapPin, Mail } from "@lucide/astro";
       <div>
         <h4 class="text-white font-semibold mb-4">Enlaces Rápidos</h4>
         <ul class="space-y-2.5">
-          {["Categorías", "¿Cómo Funciona?", "Opiniones", "Contacto"].map((link) => (
+          {[
+            { href: "/#catalogo", label: "Categorías" },
+            { href: "/#como-funciona", label: "¿Cómo Funciona?" },
+            { href: "/#opiniones", label: "Opiniones" },
+            { href: "/contacto", label: "Contacto" },
+          ].map((link) => (
             <li>
-              <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">{link}</a>
+              <a href={link.href} class="text-slate-400 hover:text-white text-sm transition-colors">{link.label}</a>
             </li>
           ))}
         </ul>
@@ -34,9 +39,14 @@ import { MapPin, Mail } from "@lucide/astro";
       <div>
         <h4 class="text-white font-semibold mb-4">Ayuda</h4>
         <ul class="space-y-2.5">
-          {["Centro de Ayuda", "Garantía y Devoluciones", "Política de Envíos", "Términos y Condiciones", "Aviso de Privacidad"].map((link) => (
+          {[
+            { href: "/#garantia", label: "Garantía y Devoluciones" },
+            { href: "/terminos", label: "Términos y Condiciones" },
+            { href: "/privacidad", label: "Aviso de Privacidad" },
+            { href: "/cookies", label: "Política de Cookies" },
+          ].map((link) => (
             <li>
-              <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">{link}</a>
+              <a href={link.href} class="text-slate-400 hover:text-white text-sm transition-colors">{link.label}</a>
             </li>
           ))}
         </ul>

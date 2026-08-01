@@ -11,6 +11,32 @@
   --color-surface: #F8FAFC;
 }
 
+/* View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+/* Navbar stays fixed during page transitions */
+header {
+  view-transition-name: navbar;
+}
+
+/* Main content fades in */
+::view-transition-old(main-content) {
+  animation: fade-out 0.3s ease-out forwards;
+}
+::view-transition-new(main-content) {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-out {
+  to { opacity: 0; transform: translateY(-8px); }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
