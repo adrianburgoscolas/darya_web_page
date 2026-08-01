@@ -1,5 +1,6 @@
 ---
 import { WashingMachine, LampCeiling, Hammer } from "@lucide/astro";
+import { withBase } from "../utils/paths";
 ---
 <section id="catalogo" class="relative bg-surface py-20 lg:py-28">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,7 +61,7 @@ import { WashingMachine, LampCeiling, Hammer } from "@lucide/astro";
           </div>
           <div class={`px-6 sm:px-8 py-4 border-t ${category.highlight ? 'border-white/10' : 'border-slate-100'}`}>
             <a
-              href="/contacto"
+              href={withBase("/contacto")}
               class={`inline-flex items-center gap-2 text-sm font-semibold transition-colors ${category.highlight ? 'text-gold-light hover:text-white' : 'text-gold hover:text-navy'}`}
             >
               Solicitar información

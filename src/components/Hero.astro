@@ -1,5 +1,6 @@
 ---
 import { WashingMachine, LampCeiling, Hammer, ArrowRight } from "@lucide/astro";
+import { withBase } from "../utils/paths";
 ---
 <section class="relative min-h-screen flex items-center bg-navy overflow-hidden pt-20">
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -33,14 +34,14 @@ import { WashingMachine, LampCeiling, Hammer, ArrowRight } from "@lucide/astro";
 
         <div class="flex flex-col sm:flex-row gap-4">
           <a
-            href="/#catalogo"
+            href={withBase("/#catalogo")}
             class="inline-flex justify-center items-center px-8 py-4 bg-gold text-white font-bold text-base rounded-full hover:bg-gold-light transition-all duration-200 shadow-xl shadow-gold/30 hover:shadow-2xl hover:shadow-gold/40 hover:-translate-y-0.5"
           >
             Ver Categorías
             <ArrowRight class="ml-2 size-5" />
           </a>
           <a
-            href="/contacto"
+            href={withBase("/contacto")}
             class="inline-flex justify-center items-center px-8 py-4 border-2 border-white/20 text-white font-semibold text-base rounded-full hover:bg-white/10 hover:border-white/30 transition-all duration-200"
           >
             Solicitar Información

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { withBase } from "../utils/paths";
 ---
 
 <Layout
@@ -111,7 +112,7 @@ import Layout from "../layouts/Layout.astro";
               <h2 class="text-xl font-bold text-navy mb-3">9. Contacto</h2>
               <p>
                 Si tiene dudas sobre nuestra política de cookies, puede contactarnos a través de nuestro 
-                <a href="/contacto" class="text-gold hover:underline">formulario de contacto</a>.
+                <a href={withBase("/contacto")} class="text-gold hover:underline">formulario de contacto</a>.
               </p>
             </div>
           </div>
