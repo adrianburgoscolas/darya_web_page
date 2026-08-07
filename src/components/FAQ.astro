@@ -1,9 +1,45 @@
 ---
 import { ChevronDown } from "@lucide/astro";
+
+const faqCards = [
+  {
+    cardBg: "from-amber-50 via-white to-white",
+    ring: "ring-amber-100 hover:ring-gold/40",
+    blob: "bg-gold/20",
+    iconBg: "from-gold to-gold-light",
+    iconShadow: "shadow-gold/30",
+    divider: "from-gold/40",
+  },
+  {
+    cardBg: "from-sky-50 via-white to-white",
+    ring: "ring-sky-100 hover:ring-sky-400/40",
+    blob: "bg-sky-300/40",
+    iconBg: "from-sky-400 to-blue-600",
+    iconShadow: "shadow-blue-500/30",
+    divider: "from-sky-400/50",
+  },
+  {
+    cardBg: "from-emerald-50 via-white to-white",
+    ring: "ring-emerald-100 hover:ring-emerald/40",
+    blob: "bg-emerald-200/50",
+    iconBg: "from-emerald to-teal-500",
+    iconShadow: "shadow-emerald/30",
+    divider: "from-emerald/40",
+  },
+  {
+    cardBg: "from-purple-50 via-white to-white",
+    ring: "ring-purple-100 hover:ring-purple-400/40",
+    blob: "bg-purple-300/40",
+    iconBg: "from-purple-400 to-purple-600",
+    iconShadow: "shadow-purple-500/30",
+    divider: "from-purple-400/50",
+  },
+];
 ---
-<section class="relative overflow-hidden bg-white py-20 lg:py-28">
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-purple-50/20 to-white py-20 lg:py-28">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <div class="absolute top-0 left-0 w-[450px] h-[450px] bg-gradient-to-br from-amber-50 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-gradient-to-tl from-sky-100/50 to-transparent rounded-full blur-3xl"></div>
   </div>
 
   <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,7 +51,7 @@ import { ChevronDown } from "@lucide/astro";
       </span>
       <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight">
         Preguntas
-        <span class="bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">Frecuentes</span>
+        <span class="bg-gradient-to-r from-gold via-rose-500 to-emerald bg-clip-text text-transparent">Frecuentes</span>
       </h2>
       <p class="mt-5 text-lg text-slate-500">
         Resolvemos tus dudas para que compres con tranquilidad.
@@ -49,19 +85,20 @@ import { ChevronDown } from "@lucide/astro";
           a: "Trabajamos únicamente con proveedores verificados y utilizamos sistemas de pago con encriptación SSL. Nuestro proceso es completamente transparente: recibirás confirmación de tu pedido, coordinación del punto de recogida y soporte continuo hasta que recojas tu producto.",
         },
       ].map((item, index) => (
-        <div class="group bg-white rounded-3xl shadow-lg shadow-slate-200/60 ring-1 ring-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+        <div class={`group relative overflow-hidden bg-gradient-to-b ${faqCards[index % faqCards.length].cardBg} rounded-3xl shadow-lg shadow-slate-200/60 ring-1 ${faqCards[index % faqCards.length].ring} hover:shadow-xl transition-all duration-300`}>
+          <div class={`absolute -top-10 -right-10 w-28 h-28 ${faqCards[index % faqCards.length].blob} rounded-full blur-2xl opacity-50 group-hover:opacity-90 transition-opacity duration-500`} aria-hidden="true"></div>
           <button
             type="button"
-            class="faq-toggle w-full flex items-center justify-between p-6 sm:p-7 text-left gap-4"
+            class="faq-toggle relative w-full flex items-center justify-between p-6 sm:p-7 text-left gap-4"
             data-index={index}
           >
             <span class="font-bold text-navy pr-2 group-hover:text-gold transition-colors">{item.q}</span>
-            <span class="faq-icon shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-gold/10 to-amber-100 text-gold flex items-center justify-center transition-transform duration-300">
+            <span class={`faq-icon shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${faqCards[index % faqCards.length].iconBg} text-white flex items-center justify-center shadow-lg ${faqCards[index % faqCards.length].iconShadow} transition-transform duration-300`}>
               <ChevronDown class="size-5" />
             </span>
           </button>
           <div class="faq-answer hidden px-6 sm:px-7 pb-6 sm:pb-7">
-            <div class="h-px w-full bg-gradient-to-r from-gold/30 to-transparent mb-4"></div>
+            <div class={`h-px w-full bg-gradient-to-r ${faqCards[index % faqCards.length].divider} to-transparent mb-4`}></div>
             <p class="text-slate-500 leading-relaxed text-sm">{item.a}</p>
           </div>
         </div>
