@@ -22,7 +22,7 @@ src/
 │   ├── HowItWorks.astro  # Timeline de 3 pasos
 │   ├── TrustSocial.astro # Métricas + carousel automático de testimonios + badges
 │   ├── FAQ.astro         # Acordeón de preguntas frecuentes
-│   └── Footer.astro      # Pie de página con enlaces legales y dirección
+│   └── Footer.astro      # Pie de página con enlaces legales y contacto
 ├── layouts/
 │   └── Layout.astro      # Layout principal (head, Navbar, Footer, View Transitions)
 ├── pages/

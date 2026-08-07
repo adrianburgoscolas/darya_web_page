@@ -1,5 +1,5 @@
 ---
-import { MapPin, Mail } from "@lucide/astro";
+import { Mail } from "@lucide/astro";
 import { withBase } from "../utils/paths";
 ---
 <footer class="bg-navy border-t border-white/5">
@@ -57,10 +57,6 @@ import { withBase } from "../utils/paths";
       <div>
         <h4 class="text-white font-semibold mb-4">Contacto</h4>
         <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <MapPin class="size-5 text-gold-light shrink-0 mt-0.5" />
-            <span class="text-slate-400 text-sm">MADRID CALLE FRANCISCO NAVACERRADA 2, ES</span>
-          </li>
           <li class="flex items-start gap-3">
             <Mail class="size-5 text-gold-light shrink-0 mt-0.5" />
             <a href={withBase("/contacto")} class="text-slate-400 hover:text-white text-sm transition-colors">Formulario de contacto</a>
