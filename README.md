@@ -1,6 +1,6 @@
 # Darya Integral Trade SL
 
-Sitio web corporativo de **Darya Integral Trade SL**, empresa especializada en electrodomésticos, accesorios del hogar y materiales de construcción con envíos a toda Latinoamérica.
+Sitio web corporativo de **Darya Integral Trade SL**, empresa especializada en electrodomésticos, accesorios del hogar y materiales de construcción con puntos de recogida en toda Latinoamérica.
 
 ## 🚀 Tech Stack
 
