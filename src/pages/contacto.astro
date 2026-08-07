@@ -1,0 +1,197 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { MapPin, Send } from "@lucide/astro";
+---
+
+<Layout
+  title="Contacto — Darya Integral Trade SL"
+  description="Contacta con Darya Integral Trade SL. Solicita información sobre electrodomésticos, accesorios del hogar y materiales de construcción."
+>
+  <main class="pt-20">
+      <!-- Header -->
+      <section class="relative overflow-hidden bg-gradient-to-b from-amber-50/60 via-white to-sky-50/40 py-16 lg:py-24">
+        <div class="absolute inset-0 pointer-events-none">
+          <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-gradient-to-br from-gold/20 via-rose-100/40 to-transparent rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-40 -left-40 w-[450px] h-[450px] bg-gradient-to-tr from-emerald/15 via-teal-100/40 to-transparent rounded-full blur-3xl"></div>
+          <div class="absolute top-10 left-1/4 w-[300px] h-[300px] bg-gradient-to-r from-sky-200/40 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span class="inline-flex items-center gap-2 text-gold font-bold text-sm uppercase tracking-widest">
+            <span class="w-6 h-px bg-gradient-to-r from-transparent to-gold"></span>
+            Contacto
+            <span class="w-6 h-px bg-gradient-to-l from-transparent to-gold"></span>
+          </span>
+          <h1 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight">
+            Estamos aquí <span class="bg-gradient-to-r from-gold via-rose-500 to-emerald bg-clip-text text-transparent">para ayudarte</span>
+          </h1>
+          <p class="mt-5 text-slate-500 text-lg max-w-2xl mx-auto">
+            Cuéntanos qué necesitas y te responderemos a la brevedad. Nuestro equipo está listo para asesorarte.
+          </p>
+        </div>
+      </section>
+
+      <!-- Contact section -->
+      <section class="relative bg-gradient-to-b from-white via-sky-50/30 to-white py-16 lg:py-24">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid lg:grid-cols-3 gap-10 lg:gap-16">
+            <!-- Contact info cards -->
+            <div class="space-y-6">
+              <div class="group relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white rounded-3xl p-7 shadow-xl shadow-sky-100 ring-1 ring-sky-100 hover:shadow-2xl transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-28 h-28 bg-sky-300/40 rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
+                <div class="relative flex items-start gap-4">
+                  <div class="shrink-0 w-13 h-13 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 shadow-lg shadow-blue-500/25 flex items-center justify-center">
+                    <MapPin class="size-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 class="font-extrabold text-navy mb-1.5">Cobertura</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Cobertura en más de 15 países de Latinoamérica. Coordinamos la entrega en puntos de recogida según la gestión logística de cada país.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact form -->
+            <div class="lg:col-span-2">
+              <div class="bg-gradient-to-b from-white via-amber-50/40 to-white rounded-[1.75rem] p-6 sm:p-8 lg:p-10 shadow-xl shadow-amber-100/70 ring-1 ring-amber-100">
+                <h2 class="text-2xl font-extrabold text-navy mb-2">Envíanos un mensaje</h2>
+                <p class="text-slate-500 mb-8">Completa el formulario y te contactaremos lo antes posible.</p>
+
+                <form id="contact-form" class="space-y-6">
+                  <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label for="name" class="block text-sm font-semibold text-navy mb-2">
+                        Nombre completo <span class="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        data-fs-field
+                        placeholder="Tu nombre y apellido"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all text-sm aria-[invalid]:border-red-400 aria-[invalid]:ring-red-400/50"
+                      />
+                      <span data-fs-error="name" class="block text-xs text-red-500 mt-1"></span>
+                    </div>
+                    <div>
+                      <label for="phone" class="block text-sm font-semibold text-navy mb-2">
+                        Teléfono
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        data-fs-field
+                        placeholder="+00 000 000 0000"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="email" class="block text-sm font-semibold text-navy mb-2">
+                      Correo electrónico <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      data-fs-field
+                      placeholder="tu@correo.com"
+                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all text-sm aria-[invalid]:border-red-400 aria-[invalid]:ring-red-400/50"
+                    />
+                    <span data-fs-error="email" class="block text-xs text-red-500 mt-1"></span>
+                  </div>
+
+                  <div>
+                    <label for="category" class="block text-sm font-semibold text-navy mb-2">
+                      Categoría de interés <span class="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="category"
+                      name="category"
+                      required
+                      data-fs-field
+                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-navy focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all text-sm appearance-none aria-[invalid]:border-red-400 aria-[invalid]:ring-red-400/50"
+                    >
+                      <option value="" disabled selected>Selecciona una categoría</option>
+                      <option value="electrodomesticos">Electrodomésticos</option>
+                      <option value="accesorios">Accesorios del Hogar</option>
+                      <option value="construccion">Materiales de Construcción</option>
+                      <option value="otro">Otro / Consulta general</option>
+                    </select>
+                    <span data-fs-error="category" class="block text-xs text-red-500 mt-1"></span>
+                  </div>
+
+                  <div>
+                    <label for="subject" class="block text-sm font-semibold text-navy mb-2">
+                      Asunto <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      required
+                      data-fs-field
+                      placeholder="Ej: Consulta sobre nevera Samsung"
+                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all text-sm aria-[invalid]:border-red-400 aria-[invalid]:ring-red-400/50"
+                    />
+                    <span data-fs-error="subject" class="block text-xs text-red-500 mt-1"></span>
+                  </div>
+
+                  <div>
+                    <label for="message" class="block text-sm font-semibold text-navy mb-2">
+                      Mensaje <span class="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows="5"
+                      data-fs-field
+                      placeholder="Cuéntanos qué productos te interesan, tus dudas o cualquier consulta..."
+                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all text-sm resize-none aria-[invalid]:border-red-400 aria-[invalid]:ring-red-400/50"
+                    ></textarea>
+                    <span data-fs-error="message" class="block text-xs text-red-500 mt-1"></span>
+                  </div>
+
+                  <button
+                    type="submit"
+                    data-fs-submit-btn
+                    class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-gold via-amber-500 to-gold-light text-white font-bold text-base rounded-2xl hover:from-gold-light hover:via-gold hover:to-gold transition-all duration-200 shadow-xl shadow-gold/30 hover:shadow-2xl hover:shadow-gold/40 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <Send class="size-5" />
+                    Enviar mensaje
+                  </button>
+
+                  <!-- Success message -->
+                  <div data-fs-success class="hidden flex items-center gap-3 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>
+                      <p class="font-semibold text-sm">¡Mensaje enviado con éxito!</p>
+                      <p class="text-xs mt-0.5">Nos pondremos en contacto contigo pronto.</p>
+                    </div>
+                  </div>
+
+                  <!-- Error message -->
+                  <div data-fs-error class="hidden flex items-center gap-3 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>
+                      <p class="font-semibold text-sm">Error al enviar</p>
+                      <p class="text-xs mt-0.5">Por favor revisa los campos e intenta de nuevo.</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+</Layout>
+
+<script>
+  import { initForm } from '@formspree/ajax/dist/index.mjs';
+  initForm({ formElement: '#contact-form', formId: 'xkodlzej' });
+</script>

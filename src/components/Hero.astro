@@ -1,0 +1,133 @@
+---
+import { WashingMachine, LampCeiling, Hammer, ArrowRight } from "@lucide/astro";
+import { withBase } from "../utils/paths";
+---
+<section class="relative overflow-hidden pt-28 lg:pt-36 pb-20 lg:pb-28 bg-gradient-to-b from-amber-50/60 via-white to-sky-50/40">
+  <!-- Gradient mesh background -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-40 -right-40 w-[650px] h-[650px] bg-gradient-to-br from-gold/20 via-rose-100/40 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-[550px] h-[550px] bg-gradient-to-tr from-emerald/20 via-teal-100/50 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-sky-200/50 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute top-10 left-10 w-[300px] h-[300px] bg-gradient-to-br from-purple-200/40 to-transparent rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+      <!-- Copy -->
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-gradient-to-r from-amber-50 to-sky-50 shadow-lg shadow-slate-200/70 ring-1 ring-gold/20">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald opacity-60"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald"></span>
+          </span>
+          <span class="text-xs font-bold text-slate-600">Puntos de recogida en Latinoamérica</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy leading-[1.08] tracking-tight">
+          Todo para tu hogar,
+          <span class="block bg-gradient-to-r from-gold via-rose-500 to-emerald bg-clip-text text-transparent">
+            al alcance de tu mano.
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-500 leading-relaxed max-w-lg">
+          Electrodomésticos, accesorios y materiales de construcción para el hogar.
+          Productos de calidad con condiciones de pago que se adaptan a ti.
+        </p>
+
+        <div class="space-y-2.5 border-l-4 rounded-r-lg bg-gradient-to-r from-gold/20 via-rose-50/60 to-transparent border-gold pl-5 py-3">
+          <p class="text-base font-bold text-navy">
+            Puente entre clientes a nuestro alcance y sus objetivos en Latinoamérica.
+          </p>
+          <p class="text-sm text-slate-500">
+            Servicio profesional para países hispanoamericanos.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+          <a
+            href={withBase("/#catalogo")}
+            class="group inline-flex justify-center items-center px-8 py-4 bg-gradient-to-r from-gold via-amber-500 to-gold-light text-white font-bold text-base rounded-2xl hover:from-gold-light hover:via-gold hover:to-gold transition-all duration-300 shadow-xl shadow-gold/40 hover:shadow-2xl hover:shadow-gold/50 hover:-translate-y-0.5"
+          >
+            Ver Categorías
+            <ArrowRight class="ml-2 size-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+          <a
+            href={withBase("/contacto")}
+            class="inline-flex justify-center items-center px-8 py-4 border-2 border-sky-200 bg-sky-50/50 text-navy font-bold text-base rounded-2xl hover:border-sky-400 hover:text-sky-700 hover:bg-sky-100/60 transition-all duration-200"
+          >
+            Solicitar Información
+          </a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 sm:gap-5 pt-2 max-w-md">
+          <div class="bg-gradient-to-b from-amber-50 to-white rounded-2xl p-4 shadow-lg shadow-amber-100 ring-1 ring-amber-100">
+            <div class="text-2xl font-black text-navy bg-gradient-to-br from-gold to-gold-light bg-clip-text text-transparent">+50K</div>
+            <div class="text-xs text-slate-500 mt-1">Clientes satisfechos</div>
+          </div>
+          <div class="bg-gradient-to-b from-emerald-50 to-white rounded-2xl p-4 shadow-lg shadow-emerald-100 ring-1 ring-emerald-100">
+            <div class="text-2xl font-black text-navy bg-gradient-to-br from-emerald to-emerald/70 bg-clip-text text-transparent">99%</div>
+            <div class="text-xs text-slate-500 mt-1">Pedidos listos a tiempo</div>
+          </div>
+          <div class="bg-gradient-to-b from-sky-50 to-white rounded-2xl p-4 shadow-lg shadow-sky-100 ring-1 ring-sky-100">
+            <div class="text-2xl font-black text-navy bg-gradient-to-br from-sky-500 to-blue-600 bg-clip-text text-transparent">+15</div>
+            <div class="text-xs text-slate-500 mt-1">Países en LATAM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento visual -->
+      <div class="relative">
+        <div class="grid grid-cols-2 gap-4 sm:gap-5">
+          <!-- Featured card -->
+          <div class="col-span-2 relative overflow-hidden bg-gradient-to-br from-navy via-navy-light to-navy rounded-[2rem] p-7 sm:p-9 shadow-2xl shadow-navy/30">
+            <div class="absolute -top-20 -right-20 w-56 h-56 bg-gold/25 rounded-full blur-3xl" aria-hidden="true"></div>
+            <div class="absolute -bottom-24 -left-16 w-48 h-48 bg-emerald/25 rounded-full blur-3xl" aria-hidden="true"></div>
+            <div class="absolute top-1/2 left-1/3 w-32 h-32 bg-sky-500/20 rounded-full blur-3xl" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-5 sm:gap-6">
+              <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-gold to-amber-500 rounded-2xl flex items-center justify-center shadow-lg shadow-gold/40">
+                <WashingMachine class="size-8 sm:size-10 text-white" />
+              </div>
+              <div>
+                <div class="text-xl sm:text-2xl font-extrabold text-white">Electrodomésticos</div>
+                <div class="text-sm text-slate-300 mt-1">Lavadoras, neveras, cocinas y más</div>
+              </div>
+            </div>
+            <div class="relative mt-6 inline-flex items-center gap-2 text-xs font-bold text-gold-light uppercase tracking-widest">
+              Categoría destacada
+              <span class="w-8 h-px bg-gradient-to-r from-gold-light to-transparent"></span>
+            </div>
+          </div>
+
+          <!-- Secondary cards -->
+          {[
+            { name: "Accesorios del Hogar", desc: "Iluminación, decoración y menaje", Icon: LampCeiling, bg: "from-rose-50 to-white", grad: "from-rose-300/40 via-gold/20 to-transparent", iconBg: "bg-gradient-to-br from-rose-400 to-gold", ring: "ring-rose-100 hover:ring-rose-400/50" },
+            { name: "Materiales de Construcción", desc: "Herramientas, ferretería y acabados", Icon: Hammer, bg: "from-teal-50 to-white", grad: "from-teal-300/40 via-emerald/20 to-transparent", iconBg: "bg-gradient-to-br from-teal-400 to-emerald", ring: "ring-teal-100 hover:ring-teal-400/50" },
+          ].map((cat) => (
+            <div class={`group relative overflow-hidden bg-gradient-to-b ${cat.bg} rounded-[1.75rem] p-6 sm:p-7 shadow-xl shadow-slate-200/70 ring-1 ${cat.ring} hover:shadow-2xl hover:-translate-y-1 transition-all duration-300`}>
+              <div class={`absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${cat.grad} to-transparent pointer-events-none`} aria-hidden="true"></div>
+              <div class={`relative w-13 h-13 sm:w-14 sm:h-14 ${cat.iconBg} rounded-xl flex items-center justify-center shadow-lg`}>
+                <cat.Icon class="size-6 sm:size-7 text-white" />
+              </div>
+              <div class="relative mt-4 text-base font-bold text-navy group-hover:text-rose-500 transition-colors">{cat.name}</div>
+              <div class="relative mt-1 text-sm text-slate-500 leading-snug">{cat.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Floating badge -->
+        <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white rounded-2xl px-6 py-4 shadow-2xl shadow-slate-300/50 ring-1 ring-slate-100 flex items-center gap-4">
+          <div class="flex -space-x-2.5">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-gold to-amber-500 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white">JD</div>
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald to-teal-500 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white">MA</div>
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-purple-500 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white">+</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400">Únete a miles</div>
+            <div class="text-sm font-extrabold text-navy">Compradores activos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

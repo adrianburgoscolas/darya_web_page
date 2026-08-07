@@ -5,13 +5,26 @@
   "engines": {
     "node": ">=22.12.0"
   },
+  "packageManager": "pnpm@11.17.0",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "ASTRO_BASE_PATH=/ astro dev",
+    "dev:gp": "ASTRO_BASE_PATH=/darya_web_page astro dev",
     "build": "astro build",
+    "build:gp": "ASTRO_BASE_PATH=/darya_web_page astro build",
+    "build:hostinger": "ASTRO_BASE_PATH=/ ASTRO_SITE=https://darya-integral-trade.com astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.1.6"
+    "@astrojs/sitemap": "^3.7.3",
+    "@formspree/ajax": "^1.1.5",
+    "@lucide/astro": "^1.28.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.6",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1"
   }
 }
