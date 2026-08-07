@@ -79,13 +79,35 @@ const navLinks = [
 </header>
 
 <script>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
-  });
-  // Close menu on link click
-  menu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => menu.classList.add('hidden'));
-  });
+  let cleanup: (() => void) | null = null;
+
+  function initNavbar() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+
+    const toggle = () => menu.classList.toggle('hidden');
+    const close = () => menu.classList.add('hidden');
+
+    btn.addEventListener('click', toggle);
+    // Close menu on link click
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', close);
+    });
+
+    cleanup = () => {
+      btn.removeEventListener('click', toggle);
+      menu.querySelectorAll('a').forEach(link => {
+        link.removeEventListener('click', close);
+      });
+    };
+  }
+
+  function cleanupNavbar() {
+    cleanup?.();
+    cleanup = null;
+  }
+
+  document.addEventListener('astro:page-load', initNavbar);
+  document.addEventListener('astro:before-swap', cleanupNavbar);
 </script>
