@@ -1,26 +1,32 @@
-<section id="calculadora" class="relative bg-navy py-20 lg:py-28">
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-3xl"></div>
+<section id="calculadora" class="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-white to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute -top-20 -right-20 w-[400px] h-[400px] bg-gradient-to-bl from-gold/15 to-transparent rounded-full blur-3xl"></div>
   </div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="text-gold-light font-semibold text-sm uppercase tracking-widest">Calculadora de Cuotas</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        Simula tu plan de pago
+      <span class="inline-flex items-center gap-2 text-gold font-bold text-sm uppercase tracking-widest">
+        <span class="w-6 h-px bg-gradient-to-r from-transparent to-gold"></span>
+        Calculadora de Cuotas
+        <span class="w-6 h-px bg-gradient-to-l from-transparent to-gold"></span>
+      </span>
+      <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight">
+        Simula tu
+        <span class="bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">plan de pago</span>
       </h2>
-      <p class="mt-4 text-slate-400 text-lg">
+      <p class="mt-5 text-lg text-slate-500">
         Ajusta el monto y el plazo para ver cuánto pagarías por mes. Sin letra chica.
       </p>
     </div>
 
     <div class="max-w-2xl mx-auto">
-      <div class="bg-navy-light/80 backdrop-blur rounded-3xl p-8 sm:p-10 border border-white/10 shadow-2xl">
+      <div class="bg-white rounded-[2rem] p-8 sm:p-10 shadow-2xl shadow-slate-200/80 ring-1 ring-slate-100">
         <!-- Amount slider -->
         <div class="mb-8">
           <div class="flex justify-between items-center mb-3">
-            <label class="text-sm font-medium text-slate-300">Monto de compra</label>
-            <span id="amount-display" class="text-2xl font-bold text-white">$500.00</span>
+            <label class="text-sm font-bold text-navy">Monto de compra</label>
+            <span id="amount-display" class="text-2xl font-black text-navy">$500.00</span>
           </div>
           <input
             type="range"
@@ -29,10 +35,10 @@
             max="5000"
             step="50"
             value="500"
-            class="w-full h-2 bg-slate-700 rounded-full appearance-none cursor-pointer accent-gold
-              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gold [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white"
+            class="w-full h-2.5 bg-gradient-to-r from-slate-200 to-slate-300 rounded-full appearance-none cursor-pointer
+              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-br [&::-webkit-slider-thumb]:from-gold [&::-webkit-slider-thumb]:to-gold-light [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:shadow-gold/40 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:ring-4 [&::-webkit-slider-thumb]:ring-white"
           />
-          <div class="flex justify-between mt-2 text-xs text-slate-500">
+          <div class="flex justify-between mt-2 text-xs text-slate-400">
             <span>$100</span>
             <span>$5,000</span>
           </div>
@@ -40,16 +46,16 @@
 
         <!-- Installments selector -->
         <div class="mb-8">
-          <label class="text-sm font-medium text-slate-300 block mb-3">Plazo en cuotas</label>
+          <label class="text-sm font-bold text-navy block mb-3">Plazo en cuotas</label>
           <div class="grid grid-cols-4 gap-3" id="cuotas-group">
             {[3, 6, 12, 24].map((n) => (
               <button
                 type="button"
                 data-cuotas={n}
-                class={`cuota-btn py-3 px-2 rounded-xl text-sm font-semibold border transition-all duration-200 ${
+                class={`cuota-btn py-3 px-2 rounded-2xl text-sm font-bold border transition-all duration-200 ${
                   n === 12
-                    ? "bg-gold text-white border-gold shadow-lg shadow-gold/30"
-                    : "bg-transparent text-slate-300 border-slate-600 hover:border-slate-400"
+                    ? "bg-gradient-to-r from-gold to-gold-light text-white border-transparent shadow-lg shadow-gold/30"
+                    : "bg-white text-slate-500 border-slate-200 hover:border-gold hover:text-gold"
                 }`}
               >
                 {n} cuotas
@@ -59,11 +65,11 @@
         </div>
 
         <!-- Result -->
-        <div class="bg-navy rounded-2xl p-6 border border-white/5">
+        <div class="bg-gradient-to-br from-navy to-navy-light rounded-3xl p-7 shadow-xl shadow-navy/20">
           <div class="text-center">
             <div class="text-sm text-slate-400 mb-1">Pagarías aproximadamente</div>
-            <div id="monthly-payment" class="text-4xl sm:text-5xl font-black text-gold-light">$41.67</div>
-            <div class="text-sm text-slate-400 mt-1">por mes durante <span id="months-display">12</span> meses</div>
+            <div id="monthly-payment" class="text-4xl sm:text-5xl font-black bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">$41.67</div>
+            <div class="text-sm text-slate-400 mt-1">por mes durante <span id="months-display" class="font-semibold text-white">12</span> meses</div>
           </div>
 
           <div class="mt-6 pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
@@ -84,7 +90,7 @@
 
         <a
           href="#catalogo"
-          class="mt-6 inline-flex w-full justify-center items-center px-8 py-4 bg-gold text-white font-bold text-base rounded-full hover:bg-gold-light transition-all duration-200 shadow-xl shadow-gold/30"
+          class="mt-6 inline-flex w-full justify-center items-center px-8 py-4 bg-gradient-to-r from-gold to-gold-light text-white font-bold text-base rounded-2xl hover:from-gold-light hover:to-gold transition-all duration-200 shadow-xl shadow-gold/30"
         >
           Quiero empezar a comprar
         </a>
@@ -122,11 +128,11 @@
     btn.addEventListener('click', () => {
       selectedCuotas = parseInt(btn.getAttribute('data-cuotas') || '12');
       cuotaBtns.forEach(b => {
-        b.className = b.className.replace(/bg-gold text-white border-gold shadow-lg shadow-gold\/30/, '')
-          .replace(/bg-transparent text-slate-300 border-slate-600 hover:border-slate-400/, '');
-        b.classList.add('bg-transparent', 'text-slate-300', 'border-slate-600');
+        b.className = b.className.replace(/bg-gradient-to-r from-gold to-gold-light text-white border-transparent shadow-lg shadow-gold\/30/, '')
+          .replace(/bg-white text-slate-500 border-slate-200 hover:border-gold hover:text-gold/, '');
+        b.classList.add('bg-white', 'text-slate-500', 'border-slate-200');
       });
-      btn.className = 'cuota-btn py-3 px-2 rounded-xl text-sm font-semibold border transition-all duration-200 bg-gold text-white border-gold shadow-lg shadow-gold/30';
+      btn.className = 'cuota-btn py-3 px-2 rounded-2xl text-sm font-bold border transition-all duration-200 bg-gradient-to-r from-gold to-gold-light text-white border-transparent shadow-lg shadow-gold/30';
       updateDisplay();
     });
   });

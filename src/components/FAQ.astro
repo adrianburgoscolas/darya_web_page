@@ -1,19 +1,28 @@
 ---
 import { ChevronDown } from "@lucide/astro";
 ---
-<section class="relative bg-surface py-20 lg:py-28">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="relative overflow-hidden bg-white py-20 lg:py-28">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 left-0 w-[450px] h-[450px] bg-gradient-to-br from-amber-50 to-transparent rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="text-gold font-semibold text-sm uppercase tracking-widest">FAQ</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
-        Preguntas Frecuentes
+      <span class="inline-flex items-center gap-2 text-gold font-bold text-sm uppercase tracking-widest">
+        <span class="w-6 h-px bg-gradient-to-r from-transparent to-gold"></span>
+        FAQ
+        <span class="w-6 h-px bg-gradient-to-l from-transparent to-gold"></span>
+      </span>
+      <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight">
+        Preguntas
+        <span class="bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">Frecuentes</span>
       </h2>
-      <p class="mt-4 text-slate-600 text-lg">
+      <p class="mt-5 text-lg text-slate-500">
         Resolvemos tus dudas para que compres con tranquilidad.
       </p>
     </div>
 
-    <div class="space-y-3">
+    <div class="space-y-4">
       {[
         {
           q: "¿Qué tipo de productos ofrecen?",
@@ -40,19 +49,20 @@ import { ChevronDown } from "@lucide/astro";
           a: "Trabajamos únicamente con proveedores verificados y utilizamos sistemas de pago con encriptación SSL. Nuestro proceso es completamente transparente: recibirás confirmación de tu pedido, coordinación del punto de recogida y soporte continuo hasta que recojas tu producto.",
         },
       ].map((item, index) => (
-        <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+        <div class="group bg-white rounded-3xl shadow-lg shadow-slate-200/60 ring-1 ring-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300">
           <button
             type="button"
-            class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left"
+            class="faq-toggle w-full flex items-center justify-between p-6 sm:p-7 text-left gap-4"
             data-index={index}
           >
-            <span class="font-semibold text-navy pr-4">{item.q}</span>
-            <span class="faq-icon shrink-0 text-slate-400 transition-transform duration-300">
+            <span class="font-bold text-navy pr-2 group-hover:text-gold transition-colors">{item.q}</span>
+            <span class="faq-icon shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-gold/10 to-amber-100 text-gold flex items-center justify-center transition-transform duration-300">
               <ChevronDown class="size-5" />
             </span>
           </button>
-          <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6">
-            <p class="text-slate-600 leading-relaxed text-sm">{item.a}</p>
+          <div class="faq-answer hidden px-6 sm:px-7 pb-6 sm:pb-7">
+            <div class="h-px w-full bg-gradient-to-r from-gold/30 to-transparent mb-4"></div>
+            <p class="text-slate-500 leading-relaxed text-sm">{item.a}</p>
           </div>
         </div>
       ))}
@@ -82,4 +92,3 @@ import { ChevronDown } from "@lucide/astro";
   }
   document.addEventListener('astro:page-load', initFAQ);
 </script>
-
