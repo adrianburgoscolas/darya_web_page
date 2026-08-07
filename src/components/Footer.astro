@@ -1,28 +1,36 @@
 ---
-import { MapPin, Mail } from "@lucide/astro";
+import { Mail } from "@lucide/astro";
 import { withBase } from "../utils/paths";
 ---
-<footer class="bg-navy border-t border-white/5">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+<footer class="relative bg-gradient-to-b from-white to-amber-50/40 border-t border-slate-200/70">
+  <div class="h-1.5 w-full bg-gradient-to-r from-gold via-rose-400 to-emerald" aria-hidden="true"></div>
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute bottom-0 left-0 w-[400px] h-[300px] bg-gradient-to-tr from-emerald-100/40 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute top-10 right-0 w-[400px] h-[300px] bg-gradient-to-bl from-sky-100/40 to-transparent rounded-full blur-3xl"></div>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
       <!-- Brand -->
       <div class="sm:col-span-2 lg:col-span-1">
-        <a href={withBase("/")} class="inline-flex items-center gap-3 mb-4">
-          <img src={withBase("/darya_logo.png")} alt="Darya Integral Trade SL" class="h-8 w-auto" />
+        <a href={withBase("/")} class="inline-flex items-center gap-3 mb-4 group">
+          <img src={withBase("/darya_logo.png")} alt="Darya Integral Trade SL" class="h-9 w-auto transition-transform duration-300 group-hover:scale-105" />
           <div>
-            <span class="block text-lg font-bold text-white leading-tight">Darya</span>
-            <span class="block text-xs text-slate-500">Integral Trade SL</span>
+            <span class="block text-lg font-extrabold text-navy leading-tight">Darya</span>
+            <span class="block text-[11px] font-semibold text-slate-400 tracking-widest uppercase">Integral Trade SL</span>
           </div>
         </a>
-        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-          Todo para tu hogar en un solo lugar. Electrodomésticos, accesorios y materiales de construcción con envíos a toda Latinoamérica.
+        <p class="text-gold font-bold text-sm leading-relaxed mb-3">
+          Puente entre clientes a nuestro alcance y sus objetivos en Latinoamérica.
+        </p>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Todo para tu hogar en un solo lugar. Electrodomésticos, accesorios y materiales de construcción con puntos de recogida en toda Latinoamérica. Servicio profesional para países hispanoamericanos.
         </p>
       </div>
 
       <!-- Quick links -->
       <div>
-        <h4 class="text-white font-semibold mb-4">Enlaces Rápidos</h4>
-        <ul class="space-y-2.5">
+        <h4 class="text-navy font-extrabold mb-5">Enlaces Rápidos</h4>
+        <ul class="space-y-3">
           {[
             { href: withBase("/#catalogo"), label: "Categorías" },
             { href: withBase("/#como-funciona"), label: "¿Cómo Funciona?" },
@@ -30,7 +38,10 @@ import { withBase } from "../utils/paths";
             { href: withBase("/contacto"), label: "Contacto" },
           ].map((link) => (
             <li>
-              <a href={link.href} class="text-slate-400 hover:text-white text-sm transition-colors">{link.label}</a>
+              <a href={link.href} class="group flex items-center gap-2 text-slate-500 hover:text-gold text-sm transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-gold to-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>
@@ -38,8 +49,8 @@ import { withBase } from "../utils/paths";
 
       <!-- Help -->
       <div>
-        <h4 class="text-white font-semibold mb-4">Ayuda</h4>
-        <ul class="space-y-2.5">
+        <h4 class="text-navy font-extrabold mb-5">Ayuda</h4>
+        <ul class="space-y-3">
           {[
             { href: withBase("/#garantia"), label: "Garantía y Devoluciones" },
             { href: withBase("/terminos"), label: "Términos y Condiciones" },
@@ -47,7 +58,10 @@ import { withBase } from "../utils/paths";
             { href: withBase("/cookies"), label: "Política de Cookies" },
           ].map((link) => (
             <li>
-              <a href={link.href} class="text-slate-400 hover:text-white text-sm transition-colors">{link.label}</a>
+              <a href={link.href} class="group flex items-center gap-2 text-slate-500 hover:text-emerald text-sm transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-emerald to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>
@@ -55,29 +69,31 @@ import { withBase } from "../utils/paths";
 
       <!-- Contact -->
       <div>
-        <h4 class="text-white font-semibold mb-4">Contacto</h4>
+        <h4 class="text-navy font-extrabold mb-5">Contacto</h4>
         <ul class="space-y-3">
           <li class="flex items-start gap-3">
-            <MapPin class="size-5 text-gold-light shrink-0 mt-0.5" />
-            <span class="text-slate-400 text-sm">MADRID CALLE FRANCISCO NAVACERRADA 2, ES</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <Mail class="size-5 text-gold-light shrink-0 mt-0.5" />
-            <a href={withBase("/contacto")} class="text-slate-400 hover:text-white text-sm transition-colors">Formulario de contacto</a>
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-gold to-amber-500 text-white shadow-lg shadow-gold/25 shrink-0">
+              <Mail class="size-4" />
+            </span>
+            <a href={withBase("/contacto")} class="text-slate-500 hover:text-sky-600 text-sm transition-colors pt-2">Formulario de contacto</a>
           </li>
         </ul>
+        <div class="mt-6 inline-flex items-center gap-2 text-xs font-bold text-navy bg-gradient-to-r from-amber-50 to-sky-50 rounded-full px-4 py-2 ring-1 ring-gold/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald"></span>
+          Puntos de recogida en LATAM
+        </div>
       </div>
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-slate-500 text-sm">
+    <div class="mt-12 pt-8 border-t border-slate-200/70 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-slate-400 text-sm">
         &copy; {new Date().getFullYear()} Darya Integral Trade SL. Todos los derechos reservados.
       </p>
       <div class="flex gap-6">
-        <a href={withBase("/privacidad")} class="text-slate-500 hover:text-slate-300 text-sm transition-colors">Privacidad</a>
-        <a href={withBase("/terminos")} class="text-slate-500 hover:text-slate-300 text-sm transition-colors">Términos</a>
-        <a href={withBase("/cookies")} class="text-slate-500 hover:text-slate-300 text-sm transition-colors">Cookies</a>
+        <a href={withBase("/privacidad")} class="text-slate-400 hover:text-gold text-sm transition-colors">Privacidad</a>
+        <a href={withBase("/terminos")} class="text-slate-400 hover:text-emerald text-sm transition-colors">Términos</a>
+        <a href={withBase("/cookies")} class="text-slate-400 hover:text-sky-600 text-sm transition-colors">Cookies</a>
       </div>
     </div>
   </div>

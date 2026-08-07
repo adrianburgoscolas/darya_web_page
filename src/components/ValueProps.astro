@@ -1,14 +1,23 @@
 ---
-import { CircleDollarSign, ShieldCheck, Zap, Headset } from "@lucide/astro";
+import { CircleDollarSign, ShieldCheck, MapPin, Headset } from "@lucide/astro";
 ---
-<section class="relative bg-surface py-20 lg:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-amber-50/30 to-white py-20 lg:py-28">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-32 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-rose-100/50 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-sky-100/50 to-transparent rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="text-gold font-semibold text-sm uppercase tracking-widest">¿Por qué Darya?</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
-        La forma inteligente de equipar tu hogar
+      <span class="inline-flex items-center gap-2 text-gold font-bold text-sm uppercase tracking-widest">
+        <span class="w-6 h-px bg-gradient-to-r from-transparent to-gold"></span>
+        ¿Por qué Darya?
+        <span class="w-6 h-px bg-gradient-to-l from-transparent to-gold"></span>
+      </span>
+      <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight">
+        La forma inteligente de <span class="bg-gradient-to-r from-gold via-rose-500 to-emerald bg-clip-text text-transparent">equipar tu hogar</span>
       </h2>
-      <p class="mt-4 text-slate-600 text-lg">
+      <p class="mt-5 text-lg text-slate-500">
         Eliminamos las barreras para que accedas a productos de calidad con condiciones que se adaptan a ti.
       </p>
     </div>
@@ -19,36 +28,59 @@ import { CircleDollarSign, ShieldCheck, Zap, Headset } from "@lucide/astro";
           Icon: CircleDollarSign,
           title: "Precios Competitivos",
           desc: "Conectamos directamente con proveedores para ofrecerte los mejores precios del mercado, sin intermediarios innecesarios.",
-          color: "bg-amber-50 text-gold",
+          color: "text-gold",
+          iconBg: "bg-gradient-to-br from-amber-400 to-gold shadow-gold/30",
+          hoverRing: "hover:ring-gold/50",
+          cardBg: "from-amber-50 via-white to-white",
+          ring: "ring-amber-100",
+          blob: "bg-gold/15",
         },
         {
           Icon: ShieldCheck,
           title: "Compra Garantizada",
           desc: "Tu inversión está protegida. Trabajamos con proveedores verificados y ofrecemos garantía en todos nuestros productos.",
-          color: "bg-emerald-50 text-emerald",
+          color: "text-emerald",
+          iconBg: "bg-gradient-to-br from-emerald to-teal-500 shadow-emerald/30",
+          hoverRing: "hover:ring-emerald/50",
+          cardBg: "from-emerald-50 via-white to-white",
+          ring: "ring-emerald-100",
+          blob: "bg-emerald/15",
         },
         {
-          Icon: Zap,
-          title: "Logística Segura y Rápida",
-          desc: "Cobertura regional garantizada con rastreo en tiempo real. Tu pedido llega seguro y a tiempo a cualquier país de Latinoamérica.",
-          color: "bg-blue-50 text-blue-600",
+          Icon: MapPin,
+          title: "Puntos de Recogida",
+          desc: "Coordinamos la entrega en puntos de recogida estratégicos según la gestión logística de cada país, para que recibas tu pedido de forma segura y cercana.",
+          color: "text-blue-600",
+          iconBg: "bg-gradient-to-br from-sky-400 to-blue-600 shadow-blue-500/30",
+          hoverRing: "hover:ring-blue-400/50",
+          cardBg: "from-sky-50 via-white to-white",
+          ring: "ring-sky-100",
+          blob: "bg-sky-200/40",
         },
         {
           Icon: Headset,
           title: "Asesoría Personalizada",
-          desc: "Te acompañamos en cada paso. Atención dedicada vía WhatsApp y soporte multicanal para resolver todas tus dudas.",
-          color: "bg-purple-50 text-purple-600",
+          desc: "Te acompañamos en cada paso. Escríbenos a través de nuestro formulario de contacto y resolveremos todas tus dudas.",
+          color: "text-purple-600",
+          iconBg: "bg-gradient-to-br from-purple-400 to-purple-600 shadow-purple-500/30",
+          hoverRing: "hover:ring-purple-400/50",
+          cardBg: "from-purple-50 via-white to-white",
+          ring: "ring-purple-100",
+          blob: "bg-purple-200/40",
         },
       ].map((item) => (
-        <div class="group relative bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-          <div class={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${item.color} mb-5`}>
-            <item.Icon class="size-7" />
+        <div
+          class={`group relative overflow-hidden bg-gradient-to-b ${item.cardBg} rounded-[1.75rem] p-7 lg:p-8 shadow-xl shadow-slate-200/70 ring-1 ${item.ring} hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ${item.hoverRing}`}
+        >
+          <div class={`absolute -top-14 -right-14 w-40 h-40 ${item.blob} rounded-full blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500`} aria-hidden="true"></div>
+          <div class={`relative inline-flex items-center justify-center w-16 h-16 ${item.iconBg} rounded-2xl shadow-lg mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3`}>
+            <item.Icon class="size-8 text-white" />
           </div>
-          <h3 class="text-lg font-bold text-navy mb-3">{item.title}</h3>
-          <p class="text-slate-600 leading-relaxed text-sm">{item.desc}</p>
+          <h3 class="relative text-lg font-extrabold text-navy mb-3">{item.title}</h3>
+          <p class="relative text-slate-500 leading-relaxed text-sm">{item.desc}</p>
+          <div class={`relative mt-6 h-1 w-12 rounded-full bg-gradient-to-r ${item.iconBg.replace('bg-gradient-to-br ', '')} opacity-60 group-hover:opacity-100 group-hover:w-20 transition-all duration-500`}></div>
         </div>
       ))}
     </div>
   </div>
 </section>
-

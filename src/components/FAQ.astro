@@ -1,27 +1,71 @@
 ---
 import { ChevronDown } from "@lucide/astro";
+
+const faqCards = [
+  {
+    cardBg: "from-amber-50 via-white to-white",
+    ring: "ring-amber-100 hover:ring-gold/40",
+    blob: "bg-gold/20",
+    iconBg: "from-gold to-gold-light",
+    iconShadow: "shadow-gold/30",
+    divider: "from-gold/40",
+  },
+  {
+    cardBg: "from-sky-50 via-white to-white",
+    ring: "ring-sky-100 hover:ring-sky-400/40",
+    blob: "bg-sky-300/40",
+    iconBg: "from-sky-400 to-blue-600",
+    iconShadow: "shadow-blue-500/30",
+    divider: "from-sky-400/50",
+  },
+  {
+    cardBg: "from-emerald-50 via-white to-white",
+    ring: "ring-emerald-100 hover:ring-emerald/40",
+    blob: "bg-emerald-200/50",
+    iconBg: "from-emerald to-teal-500",
+    iconShadow: "shadow-emerald/30",
+    divider: "from-emerald/40",
+  },
+  {
+    cardBg: "from-purple-50 via-white to-white",
+    ring: "ring-purple-100 hover:ring-purple-400/40",
+    blob: "bg-purple-300/40",
+    iconBg: "from-purple-400 to-purple-600",
+    iconShadow: "shadow-purple-500/30",
+    divider: "from-purple-400/50",
+  },
+];
 ---
-<section class="relative bg-surface py-20 lg:py-28">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-purple-50/20 to-white py-20 lg:py-28">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 left-0 w-[450px] h-[450px] bg-gradient-to-br from-amber-50 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-gradient-to-tl from-sky-100/50 to-transparent rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="text-gold font-semibold text-sm uppercase tracking-widest">FAQ</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
-        Preguntas Frecuentes
+      <span class="inline-flex items-center gap-2 text-gold font-bold text-sm uppercase tracking-widest">
+        <span class="w-6 h-px bg-gradient-to-r from-transparent to-gold"></span>
+        FAQ
+        <span class="w-6 h-px bg-gradient-to-l from-transparent to-gold"></span>
+      </span>
+      <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight">
+        Preguntas <span class="bg-gradient-to-r from-gold via-rose-500 to-emerald bg-clip-text text-transparent">Frecuentes</span>
       </h2>
-      <p class="mt-4 text-slate-600 text-lg">
+      <p class="mt-5 text-lg text-slate-500">
         Resolvemos tus dudas para que compres con tranquilidad.
       </p>
     </div>
 
-    <div class="space-y-3">
+    <div class="space-y-4">
       {[
         {
           q: "¿Qué tipo de productos ofrecen?",
           a: "Nos especializamos en tres categorías principales: electrodomésticos (lavadoras, neveras, cocinas, aires acondicionados, etc.), accesorios del hogar (iluminación, decoración, menaje, muebles) y materiales de construcción (herramientas, ferretería, pinturas, acabados). Si tienes un producto específico en mente, contáctanos y te ayudaremos a conseguirlo.",
         },
         {
-          q: "¿Cuánto tarda en llegar mi pedido?",
-          a: "El tiempo de entrega varía según tu ubicación y el tipo de producto. Generalmente, los envíos nacionales tardan de 3 a 7 días hábiles, y los pedidos especiales pueden tomar de 10 a 20 días hábiles. Todos los envíos incluyen rastreo en tiempo real para que sepas dónde está tu pedido en todo momento.",
+          q: "¿Cuánto tarda en estar listo mi pedido?",
+          a: "El tiempo de preparación varía según tu ubicación y el tipo de producto. Generalmente, los pedidos están listos en 3 a 7 días hábiles, y los pedidos especiales pueden tomar de 10 a 20 días hábiles. Te notificaremos en cuanto tu pedido esté disponible en el punto de recogida.",
         },
         {
           q: "¿Cómo funciona la garantía y devoluciones?",
@@ -29,30 +73,32 @@ import { ChevronDown } from "@lucide/astro";
         },
         {
           q: "¿Cómo puedo solicitar información sobre un producto?",
-          a: "Puedes contactarnos a través de nuestro formulario de contacto en la página, por WhatsApp o por teléfono. Nuestro equipo de asesoría te atenderá personalmente para darte todos los detalles sobre disponibilidad, especificaciones y condiciones.",
+          a: "Puedes contactarnos a través de nuestro formulario en la página de contacto. Nuestro equipo de asesoría te atenderá personalmente para darte todos los detalles sobre disponibilidad, especificaciones y condiciones.",
         },
         {
-          q: "¿Realizan envíos a todo Latinoamérica?",
-          a: "Sí, realizamos envíos a más de 15 países de Latinoamérica. Contamos con alianzas logísticas que nos permiten garantizar entregas seguras y puntuales en toda la región. Contáctanos para confirmar cobertura en tu ciudad.",
+          q: "¿Cómo recibo mi pedido?",
+          a: "No realizamos entregas a domicilio. Tu pedido se gestiona a través de nuestra red logística y lo recoges en el punto de entrega acordado según tu ciudad. Coordinamos la recogida contigo para que sea cómoda y segura.",
         },
         {
           q: "¿Cómo puedo estar seguro de que mi compra es segura?",
-          a: "Trabajamos únicamente con proveedores verificados y utilizamos sistemas de pago con encriptación SSL. Nuestro proceso es completamente transparente: recibirás confirmación de tu pedido, seguimiento en tiempo real y soporte continuo hasta que recibas tu producto.",
+          a: "Trabajamos únicamente con proveedores verificados y utilizamos sistemas de pago con encriptación SSL. Nuestro proceso es completamente transparente: recibirás confirmación de tu pedido, coordinación del punto de recogida y soporte continuo hasta que recojas tu producto.",
         },
       ].map((item, index) => (
-        <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+        <div class={`group relative overflow-hidden bg-gradient-to-b ${faqCards[index % faqCards.length].cardBg} rounded-3xl shadow-lg shadow-slate-200/60 ring-1 ${faqCards[index % faqCards.length].ring} hover:shadow-xl transition-all duration-300`}>
+          <div class={`absolute -top-10 -right-10 w-28 h-28 ${faqCards[index % faqCards.length].blob} rounded-full blur-2xl opacity-50 group-hover:opacity-90 transition-opacity duration-500`} aria-hidden="true"></div>
           <button
             type="button"
-            class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left"
+            class="faq-toggle relative w-full flex items-center justify-between p-6 sm:p-7 text-left gap-4"
             data-index={index}
           >
-            <span class="font-semibold text-navy pr-4">{item.q}</span>
-            <span class="faq-icon shrink-0 text-slate-400 transition-transform duration-300">
+            <span class="font-bold text-navy pr-2 group-hover:text-gold transition-colors">{item.q}</span>
+            <span class={`faq-icon shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${faqCards[index % faqCards.length].iconBg} text-white flex items-center justify-center shadow-lg ${faqCards[index % faqCards.length].iconShadow} transition-transform duration-300`}>
               <ChevronDown class="size-5" />
             </span>
           </button>
-          <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6">
-            <p class="text-slate-600 leading-relaxed text-sm">{item.a}</p>
+          <div class="faq-answer hidden px-6 sm:px-7 pb-6 sm:pb-7">
+            <div class={`h-px w-full bg-gradient-to-r ${faqCards[index % faqCards.length].divider} to-transparent mb-4`}></div>
+            <p class="text-slate-500 leading-relaxed text-sm">{item.a}</p>
           </div>
         </div>
       ))}
@@ -82,4 +128,3 @@ import { ChevronDown } from "@lucide/astro";
   }
   document.addEventListener('astro:page-load', initFAQ);
 </script>
-
