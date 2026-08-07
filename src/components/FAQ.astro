@@ -1,6 +1,46 @@
 ---
 import { ChevronDown } from "@lucide/astro";
 
+const faqItems = [
+  {
+    q: "¿Qué tipo de productos ofrecen?",
+    a: "Nos especializamos en tres categorías principales: electrodomésticos (lavadoras, neveras, cocinas, aires acondicionados, etc.), accesorios del hogar (iluminación, decoración, menaje, muebles) y materiales de construcción (herramientas, ferretería, pinturas, acabados). Si tienes un producto específico en mente, contáctanos y te ayudaremos a conseguirlo.",
+  },
+  {
+    q: "¿Cuánto tarda en estar listo mi pedido?",
+    a: "El tiempo de preparación varía según tu ubicación y el tipo de producto. Generalmente, los pedidos están listos en 3 a 7 días hábiles, y los pedidos especiales pueden tomar de 10 a 20 días hábiles. Te notificaremos en cuanto tu pedido esté disponible en el punto de recogida.",
+  },
+  {
+    q: "¿Cómo funciona la garantía y devoluciones?",
+    a: "Todos nuestros productos cuentan con garantía oficial del fabricante. Tienes hasta 30 días para reportar cualquier inconveniente. Nuestro equipo de soporte te guiará durante todo el proceso para que sea rápido y sin complicaciones. Tu satisfacción está garantizada.",
+  },
+  {
+    q: "¿Cómo puedo solicitar información sobre un producto?",
+    a: "Puedes contactarnos a través de nuestro formulario en la página de contacto. Nuestro equipo de asesoría te atenderá personalmente para darte todos los detalles sobre disponibilidad, especificaciones y condiciones.",
+  },
+  {
+    q: "¿Cómo recibo mi pedido?",
+    a: "No realizamos entregas a domicilio. Tu pedido se gestiona a través de nuestra red logística y lo recoges en el punto de entrega acordado según tu ciudad. Coordinamos la recogida contigo para que sea cómoda y segura.",
+  },
+  {
+    q: "¿Cómo puedo estar seguro de que mi compra es segura?",
+    a: "Trabajamos únicamente con proveedores verificados y utilizamos sistemas de pago con encriptación SSL. Nuestro proceso es completamente transparente: recibirás confirmación de tu pedido, coordinación del punto de recogida y soporte continuo hasta que recojas tu producto.",
+  },
+];
+
+const faqPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+
 const faqCards = [
   {
     cardBg: "from-amber-50 via-white to-white",
@@ -58,32 +98,7 @@ const faqCards = [
     </div>
 
     <div class="space-y-4">
-      {[
-        {
-          q: "¿Qué tipo de productos ofrecen?",
-          a: "Nos especializamos en tres categorías principales: electrodomésticos (lavadoras, neveras, cocinas, aires acondicionados, etc.), accesorios del hogar (iluminación, decoración, menaje, muebles) y materiales de construcción (herramientas, ferretería, pinturas, acabados). Si tienes un producto específico en mente, contáctanos y te ayudaremos a conseguirlo.",
-        },
-        {
-          q: "¿Cuánto tarda en estar listo mi pedido?",
-          a: "El tiempo de preparación varía según tu ubicación y el tipo de producto. Generalmente, los pedidos están listos en 3 a 7 días hábiles, y los pedidos especiales pueden tomar de 10 a 20 días hábiles. Te notificaremos en cuanto tu pedido esté disponible en el punto de recogida.",
-        },
-        {
-          q: "¿Cómo funciona la garantía y devoluciones?",
-          a: "Todos nuestros productos cuentan con garantía oficial del fabricante. Tienes hasta 30 días para reportar cualquier inconveniente. Nuestro equipo de soporte te guiará durante todo el proceso para que sea rápido y sin complicaciones. Tu satisfacción está garantizada.",
-        },
-        {
-          q: "¿Cómo puedo solicitar información sobre un producto?",
-          a: "Puedes contactarnos a través de nuestro formulario en la página de contacto. Nuestro equipo de asesoría te atenderá personalmente para darte todos los detalles sobre disponibilidad, especificaciones y condiciones.",
-        },
-        {
-          q: "¿Cómo recibo mi pedido?",
-          a: "No realizamos entregas a domicilio. Tu pedido se gestiona a través de nuestra red logística y lo recoges en el punto de entrega acordado según tu ciudad. Coordinamos la recogida contigo para que sea cómoda y segura.",
-        },
-        {
-          q: "¿Cómo puedo estar seguro de que mi compra es segura?",
-          a: "Trabajamos únicamente con proveedores verificados y utilizamos sistemas de pago con encriptación SSL. Nuestro proceso es completamente transparente: recibirás confirmación de tu pedido, coordinación del punto de recogida y soporte continuo hasta que recojas tu producto.",
-        },
-      ].map((item, index) => (
+      {faqItems.map((item, index) => (
         <div class={`group relative overflow-hidden bg-gradient-to-b ${faqCards[index % faqCards.length].cardBg} rounded-3xl shadow-lg shadow-slate-200/60 ring-1 ${faqCards[index % faqCards.length].ring} hover:shadow-xl transition-all duration-300`}>
           <div class={`absolute -top-10 -right-10 w-28 h-28 ${faqCards[index % faqCards.length].blob} rounded-full blur-2xl opacity-50 group-hover:opacity-90 transition-opacity duration-500`} aria-hidden="true"></div>
           <button
@@ -105,6 +120,8 @@ const faqCards = [
     </div>
   </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqPageJsonLd)} />
 
 <script>
   function initFAQ() {

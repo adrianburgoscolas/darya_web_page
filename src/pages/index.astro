@@ -6,6 +6,52 @@ import ProductShowcase from "../components/ProductShowcase.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import TrustSocial from "../components/TrustSocial.astro";
 import FAQ from "../components/FAQ.astro";
+
+const {
+  site,
+  url,
+} = Astro;
+const canonicalUrl = new URL(url.pathname, site).href;
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Darya Integral Trade SL",
+  url: canonicalUrl,
+  logo: new URL("/darya_logo.png", site).href,
+  image: new URL("/og-image.png", site).href,
+  description:
+    "Darya Integral Trade SL — Electrodomésticos, accesorios del hogar y materiales de construcción con puntos de recogida en Latinoamérica.",
+  areaServed: [
+    "México",
+    "Colombia",
+    "Brasil",
+    "Argentina",
+    "Chile",
+    "Perú",
+    "Ecuador",
+    "Guatemala",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    url: new URL("/contacto", site).href,
+    availableLanguage: "Spanish",
+  },
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Darya Integral Trade SL",
+  url: canonicalUrl,
+  inLanguage: "es",
+  description:
+    "Todo para tu hogar. Electrodomésticos, accesorios y materiales de construcción con puntos de recogida en toda Latinoamérica.",
+  publisher: {
+    "@type": "Organization",
+    name: "Darya Integral Trade SL",
+  },
+};
 ---
 
 <Layout
@@ -14,6 +60,8 @@ import FAQ from "../components/FAQ.astro";
   ogTitle="Darya Integral Trade SL — Todo para tu hogar"
   ogDescription="Electrodomésticos, accesorios y materiales de construcción con puntos de recogida en toda Latinoamérica."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(webSiteJsonLd)} />
   <main>
     <Hero />
     <ValueProps />
